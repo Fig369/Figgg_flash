@@ -37,7 +37,7 @@ const connection = mysql.createConnection({
         }
     });
   });
-  app.get("views/pages/topics/category", (req,res) => {
+  app.get("/topics/category", (req,res) => {
     let categories = [];
     connection.query('SELECT * FROM category WHERE category.cat_id = (SELECT DISTINCT cat_id FROM topic WHERE  topic.topic = ?)', [req.params.category], (err,results)=>{
         try {
