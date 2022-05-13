@@ -1,4 +1,16 @@
-const express = require('express');
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+
+/* const express = require('express');
 const app = express();
 
 require('dotenv').config();
@@ -125,7 +137,7 @@ app.post('/category', (req, res) => {
 // create a card
 /* EX: INSERT INTO `card` (`cat_id`, `prompt`, `question`, `answer`) VALUES ('1', 'prompt', 'question','answer');
 */
-app.post('/card', (req, res) => {
+/* app.post('/card', (req, res) => {
     console.log("save card");
     console.log(req.body);
     let id = req.body.id;
@@ -146,4 +158,4 @@ app.post('/card', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000); */ 
