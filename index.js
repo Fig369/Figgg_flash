@@ -7,6 +7,22 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get("/topics", (req,res) => {
+    let topics = [];
+    connection.query('SELECT *  FROM topic ORDER by topic', (err,results)=>{
+        try {
+            for(let i = 0; i < results.length; i++){
+                topics.push(results[i].topic)
+            }
+            res.render('topic', {
+                topics: topics
+            });
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+  });
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
