@@ -7,7 +7,12 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get("/topics", (req,res) => {
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+const app = express();
+
+  app.get('/', (req, res) => res.render('pages/index'))
+  app.get("/topics", (req,res) => {
     let topics = [];
     connection.query('SELECT *  FROM topic ORDER by topic', (err,results)=>{
         try {
@@ -23,7 +28,98 @@ express()
         }
     });
   });
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  app.get("views/pages/topics/category", (req,res) => {
+    let categories = [];
+    connection.query('SELECT * FROM category WHERE category.cat_id = (SELECT DISTINCT cat_id FROM topic WHERE  topic.topic = ?)', [req.params.category], (err,results)=>{
+        try {
+            console.log(req.params.category)
+            let categories = []
+            for(let i = 0; i < results.length; i++){
+                categories.push(results[i].category)
+            }
+            res.render('category', {
+                categories: categories,
+                topic: req.params.category
+            });
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+    });
+    app.get("pages/topics/:category/:card", (req,res) => {
+    let cards = [];
+    connection.query('SELECT * FROM card WHERE card.cat_id = (SELECT DISTINCT cat_id FROM category WHERE  category.category = ?)', [req.params.card], (err,results)=>{
+        try {
+            console.log(req.params.card);
+            let cards = [];
+            for(let i = 0; i < results.length; i++){
+                cards.push(results[i])
+            }
+            console.log(cards);
+            res.render('wordmatch', {
+                cards: cards,
+                category: req.params.category
+            });
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+    });
+    app.post('/topic', (req, res) => {
+    console.log("save topic");
+    console.log(req.body);
+    let id = req.body.id;
+    let topic = req.body.topic;
+    console.log("id: "+id);
+    console.log("topic: "+topic);
+    connection.query('INSERT INTO `topic` (`cat_id`,`topic`) VALUES (?,?)', [id, topic], (err, results) => {
+        try{
+            res.redirect('/');
+        }
+        catch(err){
+            console.log(err);
+        }
+    });
+    });
+    app.post('/category', (req, res) => {
+    console.log("save category");
+    console.log(req.body);
+    let id = req.body.id;
+    let category = req.body.category;
+    console.log("id: "+id);
+    console.log("category: "+category);
+    connection.query('INSERT INTO `category` (`cat_id`, `category`) VALUES (?, ?)', [id, category], (err, results) => {
+        try {
+            res.redirect('/');
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+    });
+    app.post('/card', (req, res) => {
+    console.log("save card");
+    console.log(req.body);
+    let id = req.body.id;
+    let prompt = req.body.prompt;
+    let question = req.body.question;
+    let answer = req.body.answer;
+    console.log("id: "+id);
+    console.log("prompt: "+prompt);
+    console.log("question: "+question);
+    console.log("answer: "+answer);
+    connection.query('INSERT INTO `card` (`cat_id`, `prompt`, `question`, `answer`) VALUES (?, ?, ?, ?);', [id, prompt, question, answer], (err, results) => {
+        try {
+            res.redirect('/');
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+    });
+
 
 
 /* const express = require('express');
