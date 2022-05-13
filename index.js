@@ -7,7 +7,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
 
 const app = express();
 const mysql = require('mysql2');
@@ -127,7 +127,7 @@ const connection = mysql.createConnection({
     });
     });
 
-
+    app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 /* const express = require('express');
 const app = express();
