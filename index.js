@@ -1,15 +1,17 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-
-
 const app = express();
+
+app.use(express.static('public'));
+app.use(express.json());
+app.set('view engine', 'ejs');
+
+app.get("/", (req, res) => {
+    res.render('index');
+});
+
+
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
     database: 'heroku_b29181ca278f904',
