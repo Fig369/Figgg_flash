@@ -10,6 +10,13 @@ express()
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 const app = express();
+const mysql = require('mysql2');
+const connection = mysql.createConnection({
+    database: 'heroku_b29181ca278f904',
+    user: 'bc6f7da3001cf6',
+    password: '1deda88a',
+    host: 'us-cdbr-east-05.cleardb.net',
+});
 
   app.get('/', (req, res) => res.render('pages/index'))
   app.get("/topics", (req,res) => {
