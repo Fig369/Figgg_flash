@@ -4,6 +4,7 @@
   "description": "A barebones Node.js app using [Express 4](http://expressjs.com/).",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
