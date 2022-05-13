@@ -37,7 +37,7 @@ const connection = mysql.createConnection({
         }
     });
   });
-  app.get("/topics/category", (req,res) => {
+  app.get("/topics/:category", (req,res) => {
     let categories = [];
     connection.query('SELECT * FROM category WHERE category.cat_id = (SELECT DISTINCT cat_id FROM topic WHERE  topic.topic = ?)', [req.params.category], (err,results)=>{
         try {
@@ -56,7 +56,7 @@ const connection = mysql.createConnection({
         }
     });
     });
-    app.get("pages/topics/:category/:card", (req,res) => {
+    app.get("/topics/:category/:card", (req,res) => {
     let cards = [];
     connection.query('SELECT * FROM card WHERE card.cat_id = (SELECT DISTINCT cat_id FROM category WHERE  category.category = ?)', [req.params.card], (err,results)=>{
         try {
