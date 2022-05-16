@@ -15,10 +15,7 @@ app.get("/", (req, res) => {
 const mysql = require('mysql2');
 const connection = mysql.createPool({
     connectionLimit : 10,
-    database        : 'heroku_b29181ca278f904',
-    user            : 'bc6f7da3001cf6',
-    password        : '1deda88a',
-    host            : 'us-cdbr-east-05.cleardb.net',
+
 });
 
 
@@ -137,8 +134,7 @@ const connection = mysql.createPool({
 connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
     if (error) throw error;
     console.log('The solution is: ', results[0].solution);
-  });
-  
+  });  
 /* const express = require('express');
 const app = express();
 
