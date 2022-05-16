@@ -15,7 +15,10 @@ app.get("/", (req, res) => {
 const mysql = require('mysql2');
 const connection = mysql.createPool({
     connectionLimit : 10,
-
+    database        : 'heroku_b29181ca278f904',
+    user            : 'bc6f7da3001cf6',
+    password        : '1deda88a',
+    host            : 'us-cdbr-east-05.cleardb.net',
 });
 
 
