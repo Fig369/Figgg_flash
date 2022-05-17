@@ -57,6 +57,8 @@
 .div16 { grid-area: 7 / 3 / 8 / 4; }
 .div17 { grid-area: 8 / 2 / 9 / 3; }
 .div18 { grid-area: 8 / 3 / 9 / 4; }
+
+
   .question-card {
     display: none;
     position: relative;
