@@ -304,11 +304,19 @@
     <h3 class="text-capitalize">Quiz Generator</h3>
     <a href="/topics">see topics</a>
     <body>
-        <div id="maincontentstyle" style="display: grid; grid-template-columns: repeat(6, 1fr);">
+        <div id="maincontentstyle" style="display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 9px;
+        grid-row-gap: 13px;">
         <div id="boxstyle">
             <div>
             <div id="inputs">
-                    <div id="inputBoxes">
+                    <div id="inputBoxes" style="display: grid;
+                    grid-template-columns: 2fr repeat(2, 1fr);
+                    grid-template-rows: repeat(8, 1fr);
+                    grid-column-gap: 9px;
+                    grid-row-gap: 13px;">
                         <title>Input:</title>
                         <div>
                         Topic: <input id= "topic" type="text" value="">
