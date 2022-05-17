@@ -182,7 +182,12 @@
 #maincontentstyle {
     background: white repeat-x; 
     padding-bottom: em; margin-left: auto; margin-right: auto; width: 100%;
-   margin-left: auto; margin-right: auto; 
+    margin-left: auto; margin-right: auto; 
+    
+}
+#maincontentstyle.style {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
 }
 
 #boxstyle {
