@@ -103,20 +103,20 @@
     br = document.createElement("br");
 
     // //create a new row for a prompt term.
-    // row0 = document.createElement("div");
+    row0 = document.createElement("div");
 
     // // set the key term text.
-    // row0.innerHTML = "Prompt ";
-    // row0.innerHTML +=numberOfInputs;
-    // row0.innerHTML +=" :";
+    row0.innerHTML = "Prompt ";
+    row0.innerHTML +=numberOfInputs;
+    row0.innerHTML +=" :";
 
     // // create the input for the prompt.
-    // key = document.createElement("input");
-    // key.setAttribute("id","pl"+numberOfInputs);
+    key = document.createElement("input");
+    key.setAttribute("id","pl"+numberOfInputs);
 
     // //add the key to the row.
-    // row0.appendChild(key);
-    // row0.after(br);
+    row0.appendChild(key);
+    row0.after(br);
     
     //create a new row for a key term.
     row1 = document.createElement("div");
@@ -151,7 +151,7 @@
     row2.appendChild(description);
 
     // add the rows for the key and the description to the inputBoxes.
-    // inputs.appendChild(row0);
+    inputs.appendChild(row0);
     inputs.appendChild(row1);
     inputs.appendChild(row2);
     }
