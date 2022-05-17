@@ -48,17 +48,17 @@ function saveCategory(){
     //2. category
     var category = document.getElementById('category').value;
     console.log("category: "+category);
-    var xhr1 = new XMLHttpRequest();
-    xhr1.open("POST", "/category", true);
-    xhr1.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr1.onreadystatechange = function()
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/category", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.onreadystatechange = function()
     {   
-        if(xhr1.readyState == 4 && xhr1.status == 200) {
-            console.log(xhr1.status)
+        if(xhr.readyState == 4 && xhr.status == 201) {
+            console.log(xhr.status)
             console.log("content saved");
         }
         else{
-            console.log(xhr1.status)
+            console.log(xhr.status)
             console.log("content was not save successfully");
         }
     }
@@ -66,7 +66,7 @@ function saveCategory(){
     var json = JSON.stringify({id: id, category: category});
     console.log("sending category");
     console.log(json);
-    xhr1.send(json);
+    xhr.send(json);
 }
 
 // save card
@@ -103,7 +103,7 @@ function saveCard(){
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.onreadystatechange = function()
     {   
-        if(xhr.readyState == 4 && xhr.status == 200) {
+        if(xhr.readyState == 4 && xhr.status == 201) {
             console.log(xhr.status)
             console.log("content saved");
         }
