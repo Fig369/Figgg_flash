@@ -1,6 +1,6 @@
  window.load = main()
 
-// function main(){
+ function main(){
     // initially html is not generated.
     var htmlGenerated = false;
     // number of inputs start out as 2.
@@ -21,7 +21,7 @@
     // var someVarName = true;
     // sessionStorage.setItem("someVarKey1", someVarName);
     // window.location.reload();
-    // }
+     }
 
     function populate_numbers_array(footer, dlArray){
         console.log("populating numbers")
