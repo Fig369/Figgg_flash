@@ -298,15 +298,13 @@
 
 <body>
 
- <div class="container">
+ <div class="container"  style=" display: grid; grid-template-columns: repeat(23, 1fr)">
   <div class="row">
-   <div class="col-11 col-lg-6 my-3" style="display: grid;
-   grid-template-columns: repeat(5, 1fr);
-   grid-template-rows: repeat(1, 0fr);
-   grid-column-gap: 13px;
-   grid-row-gap: 13px;">
-    <h3 class="text-capitalize">Quiz Generator</h3>
-    <a href="/topics">see topics</a>
+    <h3 class="text-capitalize" style="margin-bottom: 13px;margin-left: 13px;">Quiz Generator</h3>
+    <br>
+    <a href="/topics" style="padding-left: 9px;padding-top: 5px;">see topics</a>
+   <div class="col-11 col-lg-6 my-3">
+
     <body>
         <div id="maincontentstyle">
         <div id="boxstyle">
@@ -338,9 +336,10 @@
                         </div>
                     </div>
                     <span style="padding: 3px">
-                    <button id ="add_more" class="button" type="button" onClick="add_more()">Add More</button>
+                    <button id ="add_more" class="button" type="button" onClick="add_more()" style="padding-top: 1px;margin-top: 15px;margin-bottom: 15px;margin-right: 3px;">Add More</button>
                     <button id ="add_more" class="button" type="button" onClick="save()">Save</button>
                     </span>
+                    <br>
                     <br>
                     <h5>
                         See my process maps from  <a href="https://lucid.app/lucidchart/8c0c3e0a-a731-45d9-9f0f-b42a64a34ba2/view">Lucidchart</a> where I have been documenting this app and brainstorming some ideas
