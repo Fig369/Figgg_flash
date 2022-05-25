@@ -22,7 +22,7 @@
 			<h3 id='title'><%=category%></h3>
 				<center>
                     <div class='source'>
-                        <!-- this loop adds the questions to the page -->
+            <!--HERE!!! this loop adds the questions to the page -->
                         <% for(var i=1; i <= cards.length; i++) { %>
 						<div id='s<%= i %>' class='draggyBox-small ui-draggable'>
 							<%= cards[i-1].question %>
@@ -31,7 +31,7 @@
 					</div>
 					</center>
 					<table id='tablestyle'>
-                        <!-- this loop adds the answers to the page -->
+            <!--HERE!!! this loop adds the answers to the page -->
                         <% for(var i=1; i <= cards.length; i++) { %>
                         <tr>
                             <td id='row<%= i %>'>
@@ -55,11 +55,15 @@
     <a href="" title="Turns Text-to-Speech Output On or Off" class="menulink" style="text-decoration: none;">
         <img id="bg" src="/static/images/audioOff.png" height="30" width="30" style="margin-bottom:-10px; padding-bottom:-20px;"></a>
     </span>
-		
+    <a href="/">home</a>
 </body>
 </html>
 <script type="text/javascript">
 rand = Math.random();
+//HERE
+cards = <%- JSON.stringify(cards) %>
+console.log(cards);
+//
 
 $(init);
 $( window ).unload(function() {
@@ -68,27 +72,58 @@ $( window ).unload(function() {
 function reset() {  
     var someVarName = true;sessionStorage.setItem("someVarKey1", someVarName);window.location.reload();
 }
+
 function init() {	
     document.getElementById('resetButton').style.display = 'none';
     document.getElementById("resetButton").style.visibility = "hidden";
     if (false && sessionStorage.getItem("someVarKey1"))$("#one").focus();
     // This will add the indicies for the questions and answers.
     var numbers = [<% for(var i=1; i <= cards.length; i++) { %><%= i %>,<% } %>];
+
     // TODO: implement shuffling 
-    // numbers = shuffle(numbers);
-    initialize(numbers);
+    numbers = shuffle(numbers);
+    console.log(numbers);//confirms- numbers are being shuffled
+
+    initialize(numbers);//function found in event1.js 49
+
+    //HERE!!!
+    var divs = $('[id ^= s]');//select draggable boxes
+    questions = [];
+
+    for(i=0; i<divs.length; i++){//make an array of questions
+        questions.push(cards[i].question);
+    }
+    console.log(questions);
+
+    num = [];//taken from initialize function to match data values
+    for (var i = 0; i < numbers.length; i++)
+    num.push(indexOf(i + 1, numbers) + 1);
+    console.log(num);
+
+    for(i=0; i<divs.length; i++){//change innerHTML to match
+        index = num[i] - 1;
+        divs[i].innerHTML = questions[index];
+
+    }
+
+
 }
 // Use this method as a starting point for figuring out the shuffling method
 function shuffle(a){
         for(let j,i=a.length;i>1;){
-         j=Math.floor(rand*i--);
-            if (i!=j) { 
+        j=Math.floor(rand*i--);
+            if (i!=j) {
                 [a[i],a[j]]=[a[j],a[i]];
             }
         }
         return a
-}
+    }   
+
+
 </script>  
+
+
+
 <script>  
 answer = "<% for(var i=0; i < cards.length; i++) { %><%= cards[i].question %>:<%= cards[i].answer %><% } %>";  
 function show_answer() {	  
